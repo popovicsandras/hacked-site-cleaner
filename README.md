@@ -1,4 +1,4 @@
-Script run on OSX
+Script runs on OSX
 
 # Requirements:
 You will need a copy of the whole directory structure of clean site source. (clean-folder)
