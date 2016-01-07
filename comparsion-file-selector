@@ -1,0 +1,46 @@
+#!/bin/bash
+
+export terminal=$(tty)
+
+INPUT_FILE=$1;
+OUTPUT_FILE=$2;
+
+rm -f $OUTPUT_FILE;
+
+while IFS= read -r line
+do
+   clear;
+   CLEAN_FILE=`echo $line | awk '{print $2}'`;
+   CLEAN_FILE=`greadlink -f $CLEAN_FILE`;
+
+   INFECTED_FILE=`echo $line | awk '{print $4}'`;
+   INFECTED_FILE=`greadlink -f $INFECTED_FILE`;
+
+   CHECK_FILE=0;
+   echo "Check file: $INFECTED_FILE?"
+   select CHECK in "Yes" "No"; do
+      case "$CHECK" in
+         "Yes") CHECK_FILE=1; break;;
+         "No") break;;
+      esac
+   done < $terminal
+
+   if [ $CHECK_FILE -eq 0 ]; then
+      continue;
+   fi
+
+   clear;
+   colordiff --ignore-all-space $CLEAN_FILE $INFECTED_FILE;
+
+   echo "Is infected?"
+   select ANSWER in "Yes" "No"; do
+       case "$ANSWER" in
+           "Yes")
+              echo "$CLEAN_FILE" >> $OUTPUT_FILE;
+              break
+           ;;
+           "No") break;;
+       esac
+   done < $terminal
+
+done < $INPUT_FILE

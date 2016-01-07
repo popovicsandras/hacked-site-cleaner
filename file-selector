@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export terminal=$(tty)
+
+INPUT_FILE=$1;
+OUTPUT_FILE=$2;
+
+rm -f $OUTPUT_FILE;
+
+while IFS= read -r line
+do
+   clear;
+   FILE=`greadlink -f $line`;
+
+   clear;
+   cat $FILE;
+
+   echo "Is infected?"
+   select ANSWER in "Yes" "No"; do
+       case "$ANSWER" in
+           "Yes")
+              echo "$FILE" >> $OUTPUT_FILE;
+              break
+           ;;
+           "No") break;;
+       esac
+   done < $terminal
+
+done < $INPUT_FILE

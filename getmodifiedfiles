@@ -1,0 +1,13 @@
+CLEAR_FOLDER=$1;
+INFECTED_FOLDER=$2;
+
+TEMP_DIR='.tmp';
+TEMP_FILE="$TEMP_DIR/differences";
+OUTPUT_FILE="$TEMP_DIR/files-to-copy.txt";
+
+rm -f $TEMP_FILE;
+mkdir -p $TEMP_DIR;
+
+colordiff -qr --ignore-all-space $CLEAR_FOLDER $INFECTED_FOLDER | grep "differ" > $TEMP_FILE
+
+./comparsion-file-selector $TEMP_FILE $OUTPUT_FILE;
