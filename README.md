@@ -14,7 +14,7 @@ You will need a copy of the whole directory structure of hacked site source. (in
 
 		./getmodifiedfiles clean-folder-path infected-folder-path
 
-2. In files-to-copy.txt remove the unnecessary folder path prefix before every file
+2. In .tmp/files-to-copy.txt remove the unnecessary folder path prefix before every file
 
 3. Copy the files-to-copy.txt file into the clean folder
 
@@ -26,10 +26,10 @@ You will need a copy of the whole directory structure of hacked site source. (in
 
 # Get newly created php files
 
-1. Run this command to get the files-to-copy.txt file:
+1. Run this command to get the newfiles.txt file:
 
 		./getnewfiles clean-folder-path infected-folder-path
 
-2. In newfiles.txt remove the unnecessary folder path prefix before every file
+2. In .tmp/newfiles.txt remove the unnecessary folder path prefix before every file
 
 3. On your server delete the files which are inside newfiles.txt
