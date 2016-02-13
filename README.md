@@ -6,7 +6,7 @@ You will need a copy of the whole directory structure of clean site source. (cle
 You will need a copy of the whole directory structure of hacked site source. (infected-folder)
 
 # Prerequisites:
-	brew install coreutils
+	brew install coreutils colordiff
 
 # Get modified files:
 
